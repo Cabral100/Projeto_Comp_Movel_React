@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, Image, Vibration} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -84,6 +84,7 @@ function LoginScreen({ navigation }) {
     if (storedPassword && storedPassword === password) {
       navigation.replace('Home');
     } else {
+      Vibration.vibrate(1000);
       alert('Usuário ou senha incorretos!');
     }
   };
@@ -355,7 +356,7 @@ const PularScreeen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.safeContainer}>
       <View style={styles.container}>
-        <Header style={styles.header1} title="Contagem de Passos" navigation={navigation} />
+        <Header style={styles.header1} title="Contagem de Pulos" navigation={navigation} />
         <ScrollView contentContainerStyle={styles.homeContentContainer}>
           {selectedExercises.map((exerciseId) => {
             return (
